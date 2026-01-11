@@ -6,7 +6,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 struct node
 {
@@ -20,28 +19,28 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  Search
-// Input:           First node of linked list, element to search
-// Output:          Boolean value (true or false)
-// Description:     Use to search given element in linked list
+// Function Name :  Frequency
+// Input:           First node of linked list, Number to search
+// Output:          Frequency count of given number
+// Description:     Use to count frequency of a specific number in linked list
 // Author:          Sakshi Ravindra Darandale
 // Date:            06/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-bool Search(PNODE first,int no)
+int Frequency(PNODE first,int no)
 { 
-    bool bflag = true;
+    int iCount = 0;
     
     while(first != NULL)
     {
         if(first->data == no)
         {
-            return bflag;
+            iCount++;
         }
         first = first->next; 
-    }
-    return false;
+    } 
+    return iCount; 
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -84,28 +83,21 @@ void InsertFirst(PPNODE first,int no)
 int main()
 {
     PNODE head = NULL;
-    bool bRet = false;
+    int iRet = 0;
     int iNo = 0;
-    
-    InsertFirst(&head,50);
-    InsertFirst(&head,40);
+        
+    InsertFirst(&head,30);
+    InsertFirst(&head,95);
     InsertFirst(&head,30);
     InsertFirst(&head,20);
     InsertFirst(&head,10);
     
-    printf("Enter the number :\n");
+    printf("Enter the number:\n");
     scanf("%d",&iNo);
     
-    bRet = Search(head,iNo);
+    iRet = Frequency(head,iNo);
     
-    if(bRet == true)
-    {
-        printf("Number is present\n");
-    }
-    else
-    {
-        printf("Number is not present\n");
-    }
+    printf("Frequency of number is : %d\n", iRet);
     
     return 0;
 }

@@ -6,7 +6,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 struct node
 {
@@ -20,28 +19,25 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  Search
-// Input:           First node of linked list, element to search
-// Output:          Boolean value (true or false)
-// Description:     Use to search given element in linked list
+// Function Name :  DisplayEven
+// Input:           First node of linked list
+// Output:          Displays even elements
+// Description:     Use to display all even elements from linked list
 // Author:          Sakshi Ravindra Darandale
 // Date:            06/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-bool Search(PNODE first,int no)
+void DisplayEven(PNODE first)
 { 
-    bool bflag = true;
-    
     while(first != NULL)
     {
-        if(first->data == no)
+        if(first->data % 2 == 0)
         {
-            return bflag;
+            printf("%d\t", first->data);
         }
-        first = first->next; 
-    }
-    return false;
+        first = first->next;  
+    } 
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -84,28 +80,14 @@ void InsertFirst(PPNODE first,int no)
 int main()
 {
     PNODE head = NULL;
-    bool bRet = false;
-    int iNo = 0;
-    
-    InsertFirst(&head,50);
-    InsertFirst(&head,40);
-    InsertFirst(&head,30);
+        
+    InsertFirst(&head,35);
+    InsertFirst(&head,95);
+    InsertFirst(&head,46);
     InsertFirst(&head,20);
     InsertFirst(&head,10);
     
-    printf("Enter the number :\n");
-    scanf("%d",&iNo);
-    
-    bRet = Search(head,iNo);
-    
-    if(bRet == true)
-    {
-        printf("Number is present\n");
-    }
-    else
-    {
-        printf("Number is not present\n");
-    }
+    DisplayEven(head);
     
     return 0;
 }
