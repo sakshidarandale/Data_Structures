@@ -19,20 +19,20 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  DisplayGreater
+// Function Name :  DisplayLess
 // Input:           First node of linked list, value to compare
-// Output:          Displays elements greater than given value
-// Description:     Use to display all elements in linked list greater than specified value
+// Output:          Displays elements less than given value
+// Description:     Use to display all elements in linked list less than specified value
 // Author:          Sakshi Ravindra Darandale
 // Date:            08/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void DisplayGreater(PNODE first,int x)
+void DisplayLess(PNODE first,int x)
 {
     while(first != NULL)
     {
-        if(first->data > x)
+        if(first->data < x)
         {
             printf("%d\t", first->data);
         }
@@ -91,9 +91,9 @@ int main()
     printf("Enter the number: ");
     scanf("%d", &iValue);
     
-    printf("Elements greater than %d are:\n", iValue);
+    printf("Elements less than %d are:\n", iValue);
     
-    DisplayGreater(head, iValue);
+    DisplayLess(head, iValue);
     
     return 0;
 }

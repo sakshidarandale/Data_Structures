@@ -19,25 +19,27 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  DisplayGreater
-// Input:           First node of linked list, value to compare
-// Output:          Displays elements greater than given value
-// Description:     Use to display all elements in linked list greater than specified value
+// Function Name :  ReplaceNegative
+// Input:           First node of linked list
+// Output:          Repalced Negative numbers with 0
+// Description:     Use to replace negative numbers and make them zero
 // Author:          Sakshi Ravindra Darandale
 // Date:            08/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void DisplayGreater(PNODE first,int x)
-{
+void ReplaceNegative(PNODE first)
+{ 
     while(first != NULL)
     {
-        if(first->data > x)
+        if(first->data < 0)  
         {
-            printf("%d\t", first->data);
+            first->data = 0 ;      
         }
-        first = first->next; 
-    }
+        printf("%d\t", first->data); 
+        
+        first = first->next;         
+    } 
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -80,20 +82,13 @@ void InsertFirst(PPNODE first,int no)
 int main()
 {
     PNODE head = NULL;
-    int iValue = 0;
-        
-    InsertFirst(&head,50);
-    InsertFirst(&head,95);
-    InsertFirst(&head,35);
-    InsertFirst(&head,20);
+    InsertFirst(&head,-50);
+    InsertFirst(&head,-40);
+    InsertFirst(&head,30);
+    InsertFirst(&head,-20);
     InsertFirst(&head,10);
     
-    printf("Enter the number: ");
-    scanf("%d", &iValue);
-    
-    printf("Elements greater than %d are:\n", iValue);
-    
-    DisplayGreater(head, iValue);
+    ReplaceNegative(head);
     
     return 0;
 }
