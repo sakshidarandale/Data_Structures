@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
+#pragma pack(1)
 struct node
 {
-    int data;
-    struct node *next;
+   int data;
+   struct node *next; 
 };
 
 typedef struct node NODE;
@@ -13,26 +15,31 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  MakeAbsolute
+// Function Name :  CheckSorted
 // Input:           First node of linked list
-// Output:          Prints linked list with all elements as positive
-// Description:     Converts all negative elements of the linked list into positive numbers
+// Output:          Returns true if list is sorted, false otherwise
+// Description:     Checks whether the linked list is sorted in ascending order
 // Author:          Sakshi Ravindra Darandale
 // Date:            10/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void MakeAbsolute(PNODE first)
-{ 
-    while(first != NULL)
+bool CheckSorted(PNODE first)
+{
+    if(first == NULL || first->next == NULL)
     {
-        if(first->data < 0)
+       return true; 
+    }
+     
+    while(first->next != NULL)
+    {
+        if(first->data > first->next->data)
         {
-            first->data = abs(first->data);
+            return false;  
         }
-        printf("%d\t", first->data);
-        first = first->next; 
-    } 
+        first = first->next;
+    }
+    return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -74,15 +81,25 @@ void InsertFirst(PPNODE first,int no)
 int main()
 {
     PNODE head = NULL;
+    bool bRet = true;
     
-    InsertFirst(&head,-50);
-    InsertFirst(&head,-40);
-    InsertFirst(&head,47);
-    InsertFirst(&head,-35);
+    InsertFirst(&head,50);
+    InsertFirst(&head,40);
+    InsertFirst(&head,30);
+    InsertFirst(&head,20);
     InsertFirst(&head,10);
     
-    MakeAbsolute(head); 
-
+    bRet = CheckSorted(head);
+    
+    if(bRet == true)
+    {
+        printf("Linked list is sorted");
+    }
+    else
+    {
+        printf("Linked list is not sorted");
+    }
+    
     return 0;
 }
 

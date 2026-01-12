@@ -13,26 +13,30 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  MakeAbsolute
+// Function Name :  DisplayAlternate
 // Input:           First node of linked list
-// Output:          Prints linked list with all elements as positive
-// Description:     Converts all negative elements of the linked list into positive numbers
+// Output:          Prints every alternate element of the linked list
+// Description:     Displays alternate nodes starting from the first node of the linked list
 // Author:          Sakshi Ravindra Darandale
 // Date:            10/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void MakeAbsolute(PNODE first)
+void DisplayAlternate(PNODE first)
 { 
     while(first != NULL)
     {
-        if(first->data < 0)
-        {
-            first->data = abs(first->data);
-        }
         printf("%d\t", first->data);
-        first = first->next; 
-    } 
+        
+        if(first->next != NULL)
+        {
+            first = first->next->next;
+        }
+        else
+        {
+            break;
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -75,13 +79,13 @@ int main()
 {
     PNODE head = NULL;
     
-    InsertFirst(&head,-50);
-    InsertFirst(&head,-40);
-    InsertFirst(&head,47);
-    InsertFirst(&head,-35);
+    InsertFirst(&head,50);
+    InsertFirst(&head,40);
+    InsertFirst(&head,30);
+    InsertFirst(&head,20);
     InsertFirst(&head,10);
     
-    MakeAbsolute(head); 
+    DisplayAlternate(head); 
 
     return 0;
 }

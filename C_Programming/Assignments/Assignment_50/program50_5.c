@@ -13,26 +13,35 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  MakeAbsolute
-// Input:           First node of linked list
-// Output:          Prints linked list with all elements as positive
-// Description:     Converts all negative elements of the linked list into positive numbers
+// Function Name :  CountNthNodes
+// Input:           First node of linked list, position value
+// Output:          Returns the count of nodes at nth positions
+// Description:     Counts the number of nodes that appear at every nth position in the linked list
 // Author:          Sakshi Ravindra Darandale
 // Date:            10/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void MakeAbsolute(PNODE first)
+int CountNthNodes(PNODE first,int ipos)
 { 
+    int iCount = 0;
+    int iCnt = 1;
+    
+    if(first == NULL)
+    {
+        printf("List is Empty\n");
+    }
+
     while(first != NULL)
     {
-        if(first->data < 0)
+        if(iCnt % ipos == 0)
         {
-            first->data = abs(first->data);
+            iCount++;
         }
-        printf("%d\t", first->data);
-        first = first->next; 
-    } 
+        first = first->next;
+        iCnt++;
+    }
+    return iCount;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -74,14 +83,21 @@ void InsertFirst(PPNODE first,int no)
 int main()
 {
     PNODE head = NULL;
+    int iValue = 0;
+    int iRet = 0;
     
-    InsertFirst(&head,-50);
-    InsertFirst(&head,-40);
-    InsertFirst(&head,47);
-    InsertFirst(&head,-35);
+    InsertFirst(&head,50);
+    InsertFirst(&head,40);
+    InsertFirst(&head,30);
+    InsertFirst(&head,20);
     InsertFirst(&head,10);
     
-    MakeAbsolute(head); 
+    printf("Enter the position :");
+    scanf("%d",&iValue);
+    
+    iRet = CountNthNodes(head,iValue);
+    
+    printf("Number of nodes at %dth position is : %d\n", iValue, iRet);
 
     return 0;
 }

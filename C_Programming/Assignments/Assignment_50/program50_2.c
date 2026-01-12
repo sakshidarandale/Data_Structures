@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#pragma pack(1)
 struct node
 {
-    int data;
-    struct node *next;
+   int data;
+   struct node *next; 
 };
 
 typedef struct node NODE;
@@ -13,26 +14,43 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  MakeAbsolute
+// Function Name :  DisplayGreaterThanAvg
 // Input:           First node of linked list
-// Output:          Prints linked list with all elements as positive
-// Description:     Converts all negative elements of the linked list into positive numbers
+// Output:          Prints elements greater than average
+// Description:     Displays all elements in the linked list whose values are greater than the average of all elements
 // Author:          Sakshi Ravindra Darandale
 // Date:            10/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void MakeAbsolute(PNODE first)
-{ 
-    while(first != NULL)
+void DisplayGreaterThanAvg(PNODE first)
+{
+    PNODE temp = first;
+    int iSum = 0;
+    int iCount = 0;
+    int iAvg = 0;
+    
+    while(temp != NULL)
     {
-        if(first->data < 0)
+        iSum = iSum + temp->data;
+        iCount++;
+        temp = temp->next;
+    }
+    
+    iAvg = iSum / iCount;  
+    
+    printf("Average is : %d\n", iAvg);
+    printf("Elements greater than average are : ");
+    
+    temp = first;
+    while(temp != NULL)
+    {
+        if(temp->data > iAvg)
         {
-            first->data = abs(first->data);
+            printf("%d ", temp->data);
         }
-        printf("%d\t", first->data);
-        first = first->next; 
-    } 
+        temp = temp->next;
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -75,14 +93,14 @@ int main()
 {
     PNODE head = NULL;
     
-    InsertFirst(&head,-50);
-    InsertFirst(&head,-40);
-    InsertFirst(&head,47);
-    InsertFirst(&head,-35);
+    InsertFirst(&head,50);
+    InsertFirst(&head,40);
+    InsertFirst(&head,30);
+    InsertFirst(&head,20);
     InsertFirst(&head,10);
     
-    MakeAbsolute(head); 
-
+    DisplayGreaterThanAvg(head);  
+ 
     return 0;
 }
 
