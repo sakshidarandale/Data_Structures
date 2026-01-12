@@ -25,7 +25,7 @@ typedef struct node** PPNODE;
 // Output:          Nothing
 // Description:     Inserts a new node at the beginning of the linked list
 // Author:          Sakshi Ravindra Darandale
-// Date:            11/01/2026
+// Date:            09/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -50,45 +50,41 @@ void InsertFirst(PPNODE first,int no)
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  Display
+// Function Name :  CountPrime
 // Input:           First node of linked list
-// Output:          Prints elements of linked list
-// Description:     Displays all elements of the linked list in order
+// Output:          Count of prime numbers in the linked list
+// Description:     Traverses the linked list and counts nodes whose data is prime
 // Author:          Sakshi Ravindra Darandale
 // Date:            09/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void Display(PNODE first)
+int CountPrime(PNODE first)
 {
+    int iFrequency = 0;
+    int iCnt = 0;
+    int iCount = 0;
+    
     while(first != NULL)
     {
-        printf("| %d |->", first->data);
+        iFrequency = 0;
+
+        for(iCnt = 2; iCnt <= first->data / 2; iCnt++)
+        {
+            if(first->data % iCnt == 0)
+            {
+                iFrequency++;
+                break;    
+            }
+        }
+        
+        if(iFrequency == 0 && first->data > 1)
+        {
+            iCount++;
+        }
         first = first->next;
     }
-    printf("NULL\n");
-}
-
-/////////////////////////////////////////////////////////////////////////////////
-//
-// Function Name :  DisplayReverse
-// Input:           First node of linked list
-// Output:          Prints elements of linked list in reverse
-// Description:     Recursively displays all elements of the linked list in reverse order
-// Author:          Sakshi Ravindra Darandale
-// Date:            09/01/2026
-//
-////////////////////////////////////////////////////////////////////////////////
-
-void DisplayReverse(PNODE first)
-{
-    if(first == NULL)
-    {
-        return;
-    }
-    
-    DisplayReverse(first->next);
-    printf("| %d |->", first->data);
+    return iCount;
 }
 
 ////////////////////////////////////////////////////////////////
@@ -100,19 +96,16 @@ void DisplayReverse(PNODE first)
 int main()
 {
     PNODE head = NULL;
+    int iRet = 0;
     
-    InsertFirst(&head,50);
-    InsertFirst(&head,40);
-    InsertFirst(&head,30);
-    InsertFirst(&head,20);
-    InsertFirst(&head,10);
+    InsertFirst(&head, 13);
+    InsertFirst(&head, 11);
+    InsertFirst(&head, 31);
+    InsertFirst(&head, 10);
     
-    printf("Original Linked List :\n");
-    Display(head);
+    iRet = CountPrime(head);
     
-    printf("Reversed Linked List :\n");
-    DisplayReverse(head);
-    printf("NULL\n");
+    printf("Count of prime numbers in the linked list is: %d\n", iRet);
     
     return 0;
 }

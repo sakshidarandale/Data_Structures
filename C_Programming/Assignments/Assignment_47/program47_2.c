@@ -25,7 +25,7 @@ typedef struct node** PPNODE;
 // Output:          Nothing
 // Description:     Inserts a new node at the beginning of the linked list
 // Author:          Sakshi Ravindra Darandale
-// Date:            11/01/2026
+// Date:            09/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -50,45 +50,42 @@ void InsertFirst(PPNODE first,int no)
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  Display
+// Function Name :  CountDigits
 // Input:           First node of linked list
-// Output:          Prints elements of linked list
-// Description:     Displays all elements of the linked list in order
+// Output:          Prints number of digits for each node
+// Description:     Counts and displays the number of digits in each element of the linked list
 // Author:          Sakshi Ravindra Darandale
 // Date:            09/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void Display(PNODE first)
+void CountDigits(PNODE first)
 {
+    int iCount = 0;
+    int iValue = 0;
+    
     while(first != NULL)
     {
-        printf("| %d |->", first->data);
+        iValue = first->data;
+        iCount = 0;
+        
+        if(iValue == 0)
+        {
+            iCount = 1;
+        }
+        else
+        {
+            while(iValue != 0)
+            {
+                iCount++;
+                iValue = iValue / 10;
+            } 
+        }
+        
+        printf("Count of digits in %d is : %d\n", first->data, iCount);
+        
         first = first->next;
     }
-    printf("NULL\n");
-}
-
-/////////////////////////////////////////////////////////////////////////////////
-//
-// Function Name :  DisplayReverse
-// Input:           First node of linked list
-// Output:          Prints elements of linked list in reverse
-// Description:     Recursively displays all elements of the linked list in reverse order
-// Author:          Sakshi Ravindra Darandale
-// Date:            09/01/2026
-//
-////////////////////////////////////////////////////////////////////////////////
-
-void DisplayReverse(PNODE first)
-{
-    if(first == NULL)
-    {
-        return;
-    }
-    
-    DisplayReverse(first->next);
-    printf("| %d |->", first->data);
 }
 
 ////////////////////////////////////////////////////////////////
@@ -101,18 +98,12 @@ int main()
 {
     PNODE head = NULL;
     
-    InsertFirst(&head,50);
-    InsertFirst(&head,40);
-    InsertFirst(&head,30);
-    InsertFirst(&head,20);
-    InsertFirst(&head,10);
+    InsertFirst(&head, 430);
+    InsertFirst(&head, 5500);
+    InsertFirst(&head, 250);
+    InsertFirst(&head, 10);
     
-    printf("Original Linked List :\n");
-    Display(head);
-    
-    printf("Reversed Linked List :\n");
-    DisplayReverse(head);
-    printf("NULL\n");
+    CountDigits(head);
     
     return 0;
 }

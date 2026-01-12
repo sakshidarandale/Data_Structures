@@ -25,7 +25,7 @@ typedef struct node** PPNODE;
 // Output:          Nothing
 // Description:     Inserts a new node at the beginning of the linked list
 // Author:          Sakshi Ravindra Darandale
-// Date:            11/01/2026
+// Date:            09/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -50,45 +50,36 @@ void InsertFirst(PPNODE first,int no)
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  Display
+// Function Name :  SumDigits
 // Input:           First node of linked list
-// Output:          Prints elements of linked list
-// Description:     Displays all elements of the linked list in order
+// Output:          Prints sum of digits for each node
+// Description:     Calculates and displays the sum of digits of each element of the linked list
 // Author:          Sakshi Ravindra Darandale
 // Date:            09/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-void Display(PNODE first)
+void SumDigits(PNODE first)
 {
-    while(first != NULL)
-    {
-        printf("| %d |->", first->data);
-        first = first->next;
-    }
-    printf("NULL\n");
-}
-
-/////////////////////////////////////////////////////////////////////////////////
-//
-// Function Name :  DisplayReverse
-// Input:           First node of linked list
-// Output:          Prints elements of linked list in reverse
-// Description:     Recursively displays all elements of the linked list in reverse order
-// Author:          Sakshi Ravindra Darandale
-// Date:            09/01/2026
-//
-////////////////////////////////////////////////////////////////////////////////
-
-void DisplayReverse(PNODE first)
-{
-    if(first == NULL)
-    {
-        return;
-    }
+   int iSum = 0;
+   int iDigit = 0;
+   int iValue = 0;
     
-    DisplayReverse(first->next);
-    printf("| %d |->", first->data);
+   while(first != NULL)
+   {
+       iValue = first->data;
+       iSum = 0; 
+       
+       while(iValue != 0)
+       {
+           iDigit = iValue % 10;
+           iValue = iValue / 10;
+           iSum = iSum + iDigit;
+       }
+       printf("Sum of digits in %d is: %d\n", first->data, iSum);
+    
+       first = first->next;
+   }
 }
 
 ////////////////////////////////////////////////////////////////
@@ -101,18 +92,12 @@ int main()
 {
     PNODE head = NULL;
     
-    InsertFirst(&head,50);
-    InsertFirst(&head,40);
-    InsertFirst(&head,30);
-    InsertFirst(&head,20);
-    InsertFirst(&head,10);
+    InsertFirst(&head, 55);
+    InsertFirst(&head, 45);
+    InsertFirst(&head, 35);
+    InsertFirst(&head, 25);
     
-    printf("Original Linked List :\n");
-    Display(head);
-    
-    printf("Reversed Linked List :\n");
-    DisplayReverse(head);
-    printf("NULL\n");
+    SumDigits(head);
     
     return 0;
 }
