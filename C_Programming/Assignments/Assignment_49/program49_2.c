@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #pragma pack(1)
 struct node
@@ -14,32 +15,26 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  Difference
+// Function Name :  CheckAllPositive
 // Input:           First node of linked list
-// Output:          Returns difference between largest and smallest element
-// Description:     Calculates and returns the difference between maximum and minimum elements in the linked list
+// Output:          Returns true if all elements are positive, otherwise false
+// Description:     Checks whether all elements of the linked list are positive numbers
 // Author:          Sakshi Ravindra Darandale
 // Date:            10/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-int Difference(PNODE first)
+bool CheckAllPositive(PNODE first)
 {
-    int iMax = first->data, iMin = first->data;
-    int iDiff = 0;
-    
     while(first != NULL)
     {
-        if(first->data > iMax)
-            iMax = first->data;
-        if(first->data < iMin)
-            iMin = first->data;
-        
-        iDiff = iMax - iMin;
-        first = first->next;
+       if(first->data < 0)
+       {
+            return false;
+       }
+       first = first->next;
     }
-    
-    return iDiff;
+    return true;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -81,17 +76,24 @@ void InsertFirst(PPNODE first,int no)
 int main()
 {
     PNODE head = NULL;
-    int iRet = 0;
+    bool bRet = true;
     
-    InsertFirst(&head,50);
+    InsertFirst(&head,-50);
     InsertFirst(&head,40);
-    InsertFirst(&head,30);
-    InsertFirst(&head,20);
+    InsertFirst(&head,-30);
+    InsertFirst(&head,-20);
     InsertFirst(&head,10);
     
-    iRet = Difference(head);
+    bRet = CheckAllPositive(head);
     
-    printf("Difference is : %d\n", iRet); 
+    if(bRet == true)
+    {
+        printf("All elements are positive");
+    }
+    else
+    {
+        printf("All elements are not positive");
+    }
 
     return 0;
 }

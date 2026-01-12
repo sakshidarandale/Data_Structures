@@ -4,8 +4,8 @@
 #pragma pack(1)
 struct node
 {
-    int data;
-    struct node *next;
+   int data;
+   struct node *next; 
 };
 
 typedef struct node NODE;
@@ -14,32 +14,26 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  Difference
+// Function Name :  DisplayDivByThree
 // Input:           First node of linked list
-// Output:          Returns difference between largest and smallest element
-// Description:     Calculates and returns the difference between maximum and minimum elements in the linked list
+// Output:          Prints elements divisible by 3
+// Description:     Displays all elements in the linked list that are divisible by 3
 // Author:          Sakshi Ravindra Darandale
 // Date:            10/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-int Difference(PNODE first)
+void DisplayDivByThree(PNODE first)
 {
-    int iMax = first->data, iMin = first->data;
-    int iDiff = 0;
-    
     while(first != NULL)
     {
-        if(first->data > iMax)
-            iMax = first->data;
-        if(first->data < iMin)
-            iMin = first->data;
-        
-        iDiff = iMax - iMin;
+        if(first->data % 3 == 0)
+        {
+           printf("| %d | -> ", first->data);
+        }
         first = first->next;
     }
-    
-    return iDiff;
+    printf("NULL\n");
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -55,21 +49,21 @@ int Difference(PNODE first)
 
 void InsertFirst(PPNODE first,int no)
 {
-   PNODE newn = NULL;
-   newn = (PNODE)malloc(sizeof(NODE));
-   
-   newn->data = no;
-   newn->next = NULL;
-   
-   if(*first == NULL)
-   {
+    PNODE newn = NULL;
+    newn = (PNODE)malloc(sizeof(NODE));
+    
+    newn->data = no;
+    newn->next = NULL;
+    
+    if(*first == NULL)
+    {
         *first = newn;
-   }
-   else
-   {
+    }
+    else
+    {
         newn->next = *first;
         *first = newn;
-   }
+    }
 }
 
 ////////////////////////////////////////////////////////////////
@@ -81,18 +75,14 @@ void InsertFirst(PPNODE first,int no)
 int main()
 {
     PNODE head = NULL;
-    int iRet = 0;
     
-    InsertFirst(&head,50);
-    InsertFirst(&head,40);
-    InsertFirst(&head,30);
-    InsertFirst(&head,20);
+    InsertFirst(&head,27);
+    InsertFirst(&head,18);
+    InsertFirst(&head,9);
     InsertFirst(&head,10);
     
-    iRet = Difference(head);
+    DisplayDivByThree(head);
     
-    printf("Difference is : %d\n", iRet); 
-
     return 0;
 }
 

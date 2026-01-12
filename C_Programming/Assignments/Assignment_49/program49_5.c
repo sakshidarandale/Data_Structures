@@ -4,8 +4,8 @@
 #pragma pack(1)
 struct node
 {
-    int data;
-    struct node *next;
+   int data;
+   struct node *next; 
 };
 
 typedef struct node NODE;
@@ -14,32 +14,40 @@ typedef struct node** PPNODE;
 
 /////////////////////////////////////////////////////////////////////////////////
 //
-// Function Name :  Difference
+// Function Name :  CountTwoDigit
 // Input:           First node of linked list
-// Output:          Returns difference between largest and smallest element
-// Description:     Calculates and returns the difference between maximum and minimum elements in the linked list
+// Output:          Returns count of two-digit elements
+// Description:     Counts the number of elements in the linked list that have exactly two digits
 // Author:          Sakshi Ravindra Darandale
 // Date:            10/01/2026
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-int Difference(PNODE first)
+int CountTwoDigit(PNODE first)
 {
-    int iMax = first->data, iMin = first->data;
-    int iDiff = 0;
+    int iCount = 0;
+    int iDigit = 0;
+    int iValue=0;
     
     while(first != NULL)
     {
-        if(first->data > iMax)
-            iMax = first->data;
-        if(first->data < iMin)
-            iMin = first->data;
+        iValue = first->data;
+        iDigit = 0;
         
-        iDiff = iMax - iMin;
+        while(iValue != 0)
+        {
+            iValue = iValue / 10;
+            iDigit++;
+        }
+        
+        if(iDigit == 2)
+        {
+            iCount++;
+        }
+        
         first = first->next;
     }
-    
-    return iDiff;
+    return iCount;
 }
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -55,21 +63,21 @@ int Difference(PNODE first)
 
 void InsertFirst(PPNODE first,int no)
 {
-   PNODE newn = NULL;
-   newn = (PNODE)malloc(sizeof(NODE));
-   
-   newn->data = no;
-   newn->next = NULL;
-   
-   if(*first == NULL)
-   {
+    PNODE newn = NULL;
+    newn = (PNODE)malloc(sizeof(NODE));
+    
+    newn->data = no;
+    newn->next = NULL;
+    
+    if(*first == NULL)
+    {
         *first = newn;
-   }
-   else
-   {
+    }
+    else
+    {
         newn->next = *first;
         *first = newn;
-   }
+    }
 }
 
 ////////////////////////////////////////////////////////////////
@@ -83,16 +91,15 @@ int main()
     PNODE head = NULL;
     int iRet = 0;
     
-    InsertFirst(&head,50);
-    InsertFirst(&head,40);
-    InsertFirst(&head,30);
-    InsertFirst(&head,20);
+    InsertFirst(&head,200);
+    InsertFirst(&head,14);
+    InsertFirst(&head,78);
     InsertFirst(&head,10);
     
-    iRet = Difference(head);
+    iRet = CountTwoDigit(head);
     
-    printf("Difference is : %d\n", iRet); 
-
+    printf("The number of two digits elements are : %d\n", iRet);  // Output: 3
+    
     return 0;
 }
 
