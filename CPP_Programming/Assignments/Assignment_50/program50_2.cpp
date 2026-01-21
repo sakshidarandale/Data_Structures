@@ -35,35 +35,47 @@ class SinglyLLL
             iCount=0;
         }
         
-        //////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  MakeAbsolute
+        // Function Name :  DisplayGreaterThanAvg
         // Input:           None
-        // Output:          Prints linked list with all elements as positive
-        // Description:     Converts all negative elements of the linked list 
-        //                  into positive numbers
+        // Output:          Prints elements greater than average
+        // Description:     Displays all elements in the linked list whose values are greater than the average of all elements
         // Author:          Sakshi Ravindra Darandale
         // Date:            09/01/2026
         //
         ////////////////////////////////////////////////////////////////////////////////
 
-        void MakeAbsolute()
+        void DisplayGreaterThanAvg()
         {
             node * temp = first;
-
+            int iSum = 0;
+            int iCount = 0;
+            int iAvg = 0;
+            
             while(temp != NULL)
             {
-                if(temp->data < 0)
+                iSum = iSum + temp->data;
+                iCount++;
+                temp = temp->next;
+            }
+            
+            iAvg = iSum / iCount;  
+              
+            cout<<"Average is : " <<iAvg<<"\n";
+            cout<<"Elements greater than average are : \n";
+            
+            temp = first;
+            while(temp != NULL)
+            {
+                if(temp->data > iAvg)
                 {
-                    temp->data = abs(temp->data);
+                    cout<<temp->data<<"\t";
                 }
-               
-                cout<<temp->data<<"\t";
-                
-                temp = temp->next; 
-            } 
+                temp = temp->next;
+            }
         }
-        
+
         ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
@@ -104,19 +116,19 @@ int main()
 {
     SinglyLLL obj;
          
-    obj.InsertFirst(-50);
-    obj.InsertFirst(-40);
-    obj.InsertFirst(47);
-    obj.InsertFirst(-35);
+    obj.InsertFirst(50);
+    obj.InsertFirst(40);
+    obj.InsertFirst(30);
+    obj.InsertFirst(20);
     obj.InsertFirst(10);
 
-    obj.MakeAbsolute();
+    obj.DisplayGreaterThanAvg();
    
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function
+//  End of main function 
 //
 ////////////////////////////////////////////////////////////////

@@ -35,35 +35,37 @@ class SinglyLLL
             iCount=0;
         }
         
-        //////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  MakeAbsolute
+        // Function Name :  CheckSorted
         // Input:           None
-        // Output:          Prints linked list with all elements as positive
-        // Description:     Converts all negative elements of the linked list 
-        //                  into positive numbers
+        // Output:          Returns true if list is sorted, false otherwise
+        // Description:     Checks whether the linked list is sorted in ascending order
         // Author:          Sakshi Ravindra Darandale
         // Date:            09/01/2026
         //
         ////////////////////////////////////////////////////////////////////////////////
 
-        void MakeAbsolute()
+        bool CheckSorted()
         {
             node * temp = first;
-
-            while(temp != NULL)
-            {
-                if(temp->data < 0)
-                {
-                    temp->data = abs(temp->data);
-                }
-               
-                cout<<temp->data<<"\t";
-                
-                temp = temp->next; 
-            } 
-        }
         
+            if((temp == NULL) || (temp->next == NULL))
+            {
+                return true; 
+            }
+
+            while(temp->next != NULL)
+            {
+                if(temp->data > temp->next->data)
+                {
+                   return false;  
+                }
+                temp = temp->next;
+            }
+            return true;   
+        }
+
         ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
@@ -103,20 +105,30 @@ class SinglyLLL
 int main()
 {
     SinglyLLL obj;
-         
-    obj.InsertFirst(-50);
-    obj.InsertFirst(-40);
-    obj.InsertFirst(47);
-    obj.InsertFirst(-35);
+       
+    bool bRet=true;
+
+    obj.InsertFirst(50);
+    obj.InsertFirst(40);
+    obj.InsertFirst(30);
+    obj.InsertFirst(20);
     obj.InsertFirst(10);
 
-    obj.MakeAbsolute();
+    bRet=obj.CheckSorted();
    
+    if(bRet == true)
+    {
+        cout<<"List is sorted\n";
+    }
+    else
+    {
+        cout<<"List is not sorted\n";
+    }
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function
+//  End of main function 
 //
 ////////////////////////////////////////////////////////////////

@@ -35,35 +35,42 @@ class SinglyLLL
             iCount=0;
         }
         
-        //////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  MakeAbsolute
+        // Function Name :  CountNthNodes
         // Input:           None
-        // Output:          Prints linked list with all elements as positive
-        // Description:     Converts all negative elements of the linked list 
-        //                  into positive numbers
+        // Output:          Returns the count of nodes at nth positions
+        // Description:     Counts the number of nodes that appear at every nth 
+        //                  position in the linked list
         // Author:          Sakshi Ravindra Darandale
-        // Date:            09/01/2026
+        // Date:            10/01/2026
         //
         ////////////////////////////////////////////////////////////////////////////////
 
-        void MakeAbsolute()
-        {
-            node * temp = first;
+        int CountNthNodes(int no)
+        { 
+            node * temp =first;
+
+            int iCount = 0;
+            int iCnt = 1;
+            
+            if(temp == NULL)
+            {
+                cout<<"List is Empty\n";
+            }
 
             while(temp != NULL)
             {
-                if(temp->data < 0)
+                if(iCnt % no == 0)
                 {
-                    temp->data = abs(temp->data);
+                    iCount++;
                 }
-               
-                cout<<temp->data<<"\t";
-                
-                temp = temp->next; 
-            } 
+                temp = temp->next;      
+                iCnt++;                     
+            }
+            return iCount;
         }
-        
+
         ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
@@ -103,20 +110,27 @@ class SinglyLLL
 int main()
 {
     SinglyLLL obj;
-         
-    obj.InsertFirst(-50);
-    obj.InsertFirst(-40);
-    obj.InsertFirst(47);
-    obj.InsertFirst(-35);
+       
+    int iValue = 0;
+    int iRet = 0;
+
+    obj.InsertFirst(50);
+    obj.InsertFirst(40);
+    obj.InsertFirst(30);
+    obj.InsertFirst(20);
     obj.InsertFirst(10);
 
-    obj.MakeAbsolute();
-   
-    return 0;
+    cout<<"Enter the position : ";
+    cin>>iValue;
+    
+    iRet = obj.CountNthNodes(iValue);
+
+    cout<<"Number of nodes at every "<<iValue<<"th position is : "<<iRet<<"\n";
+
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function
+//  End of main function 
 //
 ////////////////////////////////////////////////////////////////

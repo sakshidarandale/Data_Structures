@@ -35,35 +35,37 @@ class SinglyLLL
             iCount=0;
         }
         
-        //////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  MakeAbsolute
+        // Function Name :  DisplayAlternate
         // Input:           None
-        // Output:          Prints linked list with all elements as positive
-        // Description:     Converts all negative elements of the linked list 
-        //                  into positive numbers
+        // Output:          Prints every alternate element of the linked list
+        // Description:     Displays alternate nodes starting from the first node of 
+        //                  the linked list
         // Author:          Sakshi Ravindra Darandale
         // Date:            09/01/2026
         //
         ////////////////////////////////////////////////////////////////////////////////
 
-        void MakeAbsolute()
-        {
+        void DisplayAlternate()
+        { 
             node * temp = first;
 
             while(temp != NULL)
             {
-                if(temp->data < 0)
-                {
-                    temp->data = abs(temp->data);
-                }
-               
                 cout<<temp->data<<"\t";
                 
-                temp = temp->next; 
-            } 
+                if(temp->next != NULL)
+                {
+                    temp = temp->next->next;
+                }
+                else
+                {
+                    break;
+                }
+            }
         }
-        
+
         ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
@@ -103,20 +105,21 @@ class SinglyLLL
 int main()
 {
     SinglyLLL obj;
-         
-    obj.InsertFirst(-50);
-    obj.InsertFirst(-40);
-    obj.InsertFirst(47);
-    obj.InsertFirst(-35);
+       
+    bool bRet=true;
+
+    obj.InsertFirst(50);
+    obj.InsertFirst(40);
+    obj.InsertFirst(30);
+    obj.InsertFirst(20);
     obj.InsertFirst(10);
 
-    obj.MakeAbsolute();
+    obj.DisplayAlternate();
    
-    return 0;
-    
+   
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function
+//  End of main function 
 //
 ////////////////////////////////////////////////////////////////
