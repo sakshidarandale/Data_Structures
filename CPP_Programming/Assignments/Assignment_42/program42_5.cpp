@@ -37,10 +37,10 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  Maximum
+        // Function Name :  Minimum
         // Input:           None
-        // Output:          Integer (largest element in linked list)
-        // Description:     Use to find the maximum element from the linked list
+        // Output:          Integer (smallest element in linked list)
+        // Description:     Use to find the minimum element from the linked list
         // Author:          Sakshi Ravindra Darandale
         // Date:            06/01/2026
         //
@@ -120,6 +120,6 @@ int main()
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function function
+//  End of main function
 //
 ////////////////////////////////////////////////////////////////
