@@ -35,34 +35,36 @@ class SinglyLLL
             iCount=0;
         }
         
-                ////////////////////////////////////////////////////////////////////////////////
-        // Function Name :  Search
-        // Input         :  Element to search
-        // Output        :  Boolean value (true if found, false otherwise)
-        // Description   :  Searches the given element in the singly linked list
-        // Author        :  Sakshi Ravindra Darandale
-        // Date          :  06/01/2026
-        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////
+        //
+        // Function Name : Frequency
+        // Input         : None
+        // Output        : Frequency count of given number 
+        // Description   : Use to count frequency of a specific number in linked list
+        // Author:       : Sakshi Ravindra Darandale
+        // Date:         :  06/01/2026
+        //
+        ///////////////////////////////////////////////////////////////
 
-
-        bool Search(int no)
+        int Frequency(int no)
         { 
-            node * temp = first;
-            bool bflag = true;
+            node * temp=first;
+            
+            int iCount = 0;
             
             while(temp != NULL)
             {
                 if(temp->data == no)
                 {
-                    bflag;
+                    iCount++;
                 }
                 temp = temp->next; 
-            }
-            return false;
+            } 
+            return iCount; 
         }
 
         
-        //////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
         // Input:           Data of node
@@ -71,11 +73,11 @@ class SinglyLLL
         // Author:          Sakshi Ravindra Darandale
         // Date:            06/01/2026
         //
-        //////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////
         
         void InsertFirst(int no)
         {
-            node * newn =NULL;
+            node * newn = NULL;
             
             newn = new node(no);
             
@@ -85,8 +87,8 @@ class SinglyLLL
             }
             else
             {
-                newn->next=first;
-                first=newn;
+                newn->next = first;
+                first = newn;
             
             }
             iCount++;
@@ -103,35 +105,27 @@ int main()
 {
     SinglyLLL obj;
 
-    bool bRet = false;
-    
+    int iRet = 0;
     int iNo = 0;
-    
-    obj.InsertFirst(50);
-    obj.InsertFirst(40);
+
+    obj.InsertFirst(30);
+    obj.InsertFirst(95);
     obj.InsertFirst(30);
     obj.InsertFirst(20);
-    obj.InsertFirst(10);
-   
+    obj.InsertFirst(30);
+
     cout<<"Enter the number : \n";
     cin>>iNo;
     
-    bRet = obj.Search(iNo);
+    iRet = obj.Frequency(iNo);
     
-    if(bRet == true)
-    {
-        cout<<"Number is present\n";
-    }
-    else
-    {
-        cout<<"Number is not present\n";
-    }
+    cout<<"Frequency of the number is : "<<iRet<<"\n";
 
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function 
+//  End of main function
 //
 ////////////////////////////////////////////////////////////////

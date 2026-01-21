@@ -35,34 +35,32 @@ class SinglyLLL
             iCount=0;
         }
         
-                ////////////////////////////////////////////////////////////////////////////////
-        // Function Name :  Search
-        // Input         :  Element to search
-        // Output        :  Boolean value (true if found, false otherwise)
-        // Description   :  Searches the given element in the singly linked list
-        // Author        :  Sakshi Ravindra Darandale
-        // Date          :  06/01/2026
-        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////
+        //
+        // Function Name : DisplayEven
+        // Input         : None
+        // Output        : Displays even elements
+        // Description   : Use to display all even elements from linked list
+        // Author:       : Sakshi Ravindra Darandale
+        // Date:         :  06/01/2026
+        //
+        ///////////////////////////////////////////////////////////////
 
-
-        bool Search(int no)
+        void DisplayEven()
         { 
-            node * temp = first;
-            bool bflag = true;
+            node * temp=first;
             
             while(temp != NULL)
             {
-                if(temp->data == no)
+                if(temp->data % 2 == 0)
                 {
-                    bflag;
+                    cout<<temp->data<<"\n";
                 }
-                temp = temp->next; 
-            }
-            return false;
+                temp = temp->next;  
+            } 
         }
-
         
-        //////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
         // Input:           Data of node
@@ -71,11 +69,11 @@ class SinglyLLL
         // Author:          Sakshi Ravindra Darandale
         // Date:            06/01/2026
         //
-        //////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////
         
         void InsertFirst(int no)
         {
-            node * newn =NULL;
+            node * newn = NULL;
             
             newn = new node(no);
             
@@ -85,8 +83,8 @@ class SinglyLLL
             }
             else
             {
-                newn->next=first;
-                first=newn;
+                newn->next = first;
+                first = newn;
             
             }
             iCount++;
@@ -103,29 +101,15 @@ int main()
 {
     SinglyLLL obj;
 
-    bool bRet = false;
-    
-    int iNo = 0;
-    
-    obj.InsertFirst(50);
-    obj.InsertFirst(40);
-    obj.InsertFirst(30);
+    obj.InsertFirst(35);
+    obj.InsertFirst(95);
+    obj.InsertFirst(46);
     obj.InsertFirst(20);
     obj.InsertFirst(10);
+
+    cout<<"Even elements are : \n";
    
-    cout<<"Enter the number : \n";
-    cin>>iNo;
-    
-    bRet = obj.Search(iNo);
-    
-    if(bRet == true)
-    {
-        cout<<"Number is present\n";
-    }
-    else
-    {
-        cout<<"Number is not present\n";
-    }
+    obj.DisplayEven();
 
     return 0;
     

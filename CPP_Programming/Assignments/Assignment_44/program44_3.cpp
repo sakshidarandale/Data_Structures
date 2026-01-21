@@ -35,34 +35,34 @@ class SinglyLLL
             iCount=0;
         }
         
-                ////////////////////////////////////////////////////////////////////////////////
-        // Function Name :  Search
-        // Input         :  Element to search
-        // Output        :  Boolean value (true if found, false otherwise)
-        // Description   :  Searches the given element in the singly linked list
-        // Author        :  Sakshi Ravindra Darandale
-        // Date          :  06/01/2026
-        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////
+        //
+        // Function Name : CountOdd
+        // Input         : None
+        // Output        : Count of odd elements
+        // Description   : Counts number of nodes containing odd values
+        // Author:       : Sakshi Ravindra Darandale
+        // Date:         :  06/01/2026
+        //
+        ///////////////////////////////////////////////////////////////
 
-
-        bool Search(int no)
+        int CountOdd()
         { 
-            node * temp = first;
-            bool bflag = true;
+            node * temp=first;
+            int iCount=0;
             
-            while(temp != NULL)
+            while(temp!=NULL)
             {
-                if(temp->data == no)
+                if(temp->data %2 != 0)
                 {
-                    bflag;
+                    iCount++;
                 }
-                temp = temp->next; 
-            }
-            return false;
+                temp=temp->next; 
+            } 
+            return iCount; 
         }
-
         
-        //////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
         // Input:           Data of node
@@ -71,7 +71,7 @@ class SinglyLLL
         // Author:          Sakshi Ravindra Darandale
         // Date:            06/01/2026
         //
-        //////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////
         
         void InsertFirst(int no)
         {
@@ -103,29 +103,17 @@ int main()
 {
     SinglyLLL obj;
 
-    bool bRet = false;
-    
-    int iNo = 0;
-    
+    int iRet = 0;
+
     obj.InsertFirst(50);
-    obj.InsertFirst(40);
-    obj.InsertFirst(30);
+    obj.InsertFirst(95);
+    obj.InsertFirst(35);
     obj.InsertFirst(20);
     obj.InsertFirst(10);
-   
-    cout<<"Enter the number : \n";
-    cin>>iNo;
+
+    iRet = obj.CountOdd();
     
-    bRet = obj.Search(iNo);
-    
-    if(bRet == true)
-    {
-        cout<<"Number is present\n";
-    }
-    else
-    {
-        cout<<"Number is not present\n";
-    }
+    cout<<"Number of odd values are : "<<iRet<<"\n";
 
     return 0;
     
