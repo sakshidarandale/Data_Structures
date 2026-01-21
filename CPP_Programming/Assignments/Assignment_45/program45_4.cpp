@@ -37,29 +37,31 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////
         //
-        // Function Name : DisplayOdd
-        // Input         : None
-        // Output        : Displays odd elements
-        // Description   : Use to display all odd elements from linked list
+        // Function Name : CountGreater
+        // Input         : Value to compare
+        // Output        : Count of elements greater than given value.
+        // Description   : Use to count number of elements in linked list greater than specified value
         // Author:       : Sakshi Ravindra Darandale
         // Date:         :  06/01/2026
         //
         ///////////////////////////////////////////////////////////////
 
-        void DisplayOdd()
+        int CountGreater(int x)
         { 
-            node * temp=first;
+            node * temp = first;
+            int iCount = 0;
             
             while(temp != NULL)
             {
-                if(temp->data % 2 != 0)
+                if(temp->data > x)
                 {
-                    cout<<temp->data<<"\n";
+                    iCount++;
                 }
-                temp = temp->next;  
+                temp = temp->next; 
             } 
+            return iCount; 
         }
-        
+
         ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
@@ -101,16 +103,22 @@ int main()
 {
     SinglyLLL obj;
 
-    obj.InsertFirst(35);
+    int iRet = 0;
+    int iValue = 0;
+    
+    obj.InsertFirst(70);
     obj.InsertFirst(95);
-    obj.InsertFirst(46);
+    obj.InsertFirst(35);
     obj.InsertFirst(20);
     obj.InsertFirst(10);
 
-    cout<<"Odd elements are : \n";
+    cout<<"Enter the number: \n";
+    cin>>iValue;
+    
+    iRet=obj.CountGreater(iValue);
+    
+   cout<<"Number of elements greater than "<<iValue<< " are : "<<iRet;
    
-    obj.DisplayOdd();
-
     return 0;
     
 }

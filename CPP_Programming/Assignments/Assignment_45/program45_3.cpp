@@ -37,28 +37,34 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////
         //
-        // Function Name : DisplayOdd
-        // Input         : None
-        // Output        : Displays odd elements
-        // Description   : Use to display all odd elements from linked list
+        // Function Name : LastOccur
+        // Input         : Element to search
+        // Output        : Position of last occurrence of element.
+        // Description   : 
         // Author:       : Sakshi Ravindra Darandale
         // Date:         :  06/01/2026
         //
         ///////////////////////////////////////////////////////////////
 
-        void DisplayOdd()
+        int LastOccur(int no)
         { 
-            node * temp=first;
+            node * temp = first;
+            
+            int iPos = 1;
+            int iLastPos = -1;
             
             while(temp != NULL)
             {
-                if(temp->data % 2 != 0)
-                {
-                    cout<<temp->data<<"\n";
-                }
-                temp = temp->next;  
-            } 
+            if(temp->data == no)
+            {
+                iLastPos = iPos;
+            }
+            temp = temp->next;
+            iPos++;
+            }
+            return iLastPos;   
         }
+
         
         ////////////////////////////////////////////////////////////////
         //
@@ -101,16 +107,29 @@ int main()
 {
     SinglyLLL obj;
 
-    obj.InsertFirst(35);
-    obj.InsertFirst(95);
-    obj.InsertFirst(46);
+    int iRet = 0;
+    int iNo = 0;
+    
+    obj.InsertFirst(70);
+    obj.InsertFirst(20);
+    obj.InsertFirst(30);
     obj.InsertFirst(20);
     obj.InsertFirst(10);
 
-    cout<<"Odd elements are : \n";
+    cout<<"Enter the element to search : \n";
+    cin>>iNo;
+    
+    iRet=obj.LastOccur(iNo);
+    
+    if(iRet == -1)
+    {
+        cout<<"Element not found\n";
+    }
+    else
+    {
+        cout<<"Last occurrence of is at position "<<iRet<<"\n";
+    }
    
-    obj.DisplayOdd();
-
     return 0;
     
 }
