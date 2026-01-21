@@ -37,25 +37,27 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////
         //
-        // Function Name : DisplayGreater
-        // Input         : Value to compare
-        // Output        :  Displays elements greater than given value
-        // Description   : Use to display all elements in linked list greater than specified value
+        // Function Name : ReplaceNegative
+        // Input         : 
+        // Output        : Repalced Negative numbers with 0 
+        // Description   :  Use to replace negative numbers and make them zero
         // Author        : Sakshi Ravindra Darandale
         // Date         :  06/01/2026
         //
         ///////////////////////////////////////////////////////////////
 
-        void DisplayGreater(int x)
+        void ReplaceNegative()
         { 
             node * temp = first;
            
             while(temp != NULL)
             {
-                if(temp->data > x)
+                if(temp->data < 0)
             {
-                cout<<temp->data<<"\n";
+                temp->data = 0;
             }
+            cout<<temp->data<<"\n";
+            
             temp = temp->next; 
             } 
         } 
@@ -100,27 +102,20 @@ class SinglyLLL
 int main()
 {
     SinglyLLL obj;
-
-    int iValue = 0;
-    
-    obj.InsertFirst(70);
-    obj.InsertFirst(95);
-    obj.InsertFirst(35);
-    obj.InsertFirst(20);
+ 
+    obj.InsertFirst(-50);
+    obj.InsertFirst(-40);
+    obj.InsertFirst(30);
+    obj.InsertFirst(-20);
     obj.InsertFirst(10);
-
-    cout<<"Enter the number: \n";
-    cin>>iValue;
     
-    cout<<"Elements greater than " <<iValue<< " are : \n";
-    
-    obj.DisplayGreater(iValue);
+    obj.ReplaceNegative();
     
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function function
+//  End of main function 
 //
 ////////////////////////////////////////////////////////////////

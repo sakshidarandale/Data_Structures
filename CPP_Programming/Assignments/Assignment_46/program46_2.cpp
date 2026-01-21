@@ -37,22 +37,22 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////
         //
-        // Function Name : DisplayGreater
+        // Function Name : DisplayLess
         // Input         : Value to compare
-        // Output        :  Displays elements greater than given value
-        // Description   : Use to display all elements in linked list greater than specified value
+        // Output        :  Displays elements smaller than given value
+        // Description   : Use to display all elements in linked list smaller than specified value
         // Author        : Sakshi Ravindra Darandale
         // Date         :  06/01/2026
         //
         ///////////////////////////////////////////////////////////////
 
-        void DisplayGreater(int x)
+        void DisplayLess(int x)
         { 
             node * temp = first;
            
             while(temp != NULL)
             {
-                if(temp->data > x)
+                if(temp->data < x)
             {
                 cout<<temp->data<<"\n";
             }
@@ -112,15 +112,15 @@ int main()
     cout<<"Enter the number: \n";
     cin>>iValue;
     
-    cout<<"Elements greater than " <<iValue<< " are : \n";
+    cout<<"Elements smaller than " <<iValue<< " are : \n";
     
-    obj.DisplayGreater(iValue);
+    obj.DisplayLess(iValue);
     
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function function
+//  End of main function 
 //
 ////////////////////////////////////////////////////////////////

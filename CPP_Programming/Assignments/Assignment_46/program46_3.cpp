@@ -37,28 +37,25 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////
         //
-        // Function Name : DisplayGreater
-        // Input         : Value to compare
-        // Output        :  Displays elements greater than given value
-        // Description   : Use to display all elements in linked list greater than specified value
+        // Function Name : IsEmpty
+        // Input         : None
+        // Output        : Returns true if list is empty, false otherwise 
+        // Description   : Checks whether the linked list is empty or not
         // Author        : Sakshi Ravindra Darandale
         // Date         :  06/01/2026
         //
         ///////////////////////////////////////////////////////////////
 
-        void DisplayGreater(int x)
+        bool IsEmpty()
         { 
             node * temp = first;
-           
-            while(temp != NULL)
+            
+            if(temp == NULL)
             {
-                if(temp->data > x)
-            {
-                cout<<temp->data<<"\n";
+                return true; 
             }
-            temp = temp->next; 
-            } 
-        } 
+            return false;
+        }
         
         ////////////////////////////////////////////////////////////////
         //
@@ -101,7 +98,7 @@ int main()
 {
     SinglyLLL obj;
 
-    int iValue = 0;
+    bool bRet = false;
     
     obj.InsertFirst(70);
     obj.InsertFirst(95);
@@ -109,18 +106,22 @@ int main()
     obj.InsertFirst(20);
     obj.InsertFirst(10);
 
-    cout<<"Enter the number: \n";
-    cin>>iValue;
+    bRet=obj.IsEmpty();
     
-    cout<<"Elements greater than " <<iValue<< " are : \n";
-    
-    obj.DisplayGreater(iValue);
+    if(bRet == true)
+    {
+        cout<<"List is Empty\n";
+    }
+    else
+    {
+       cout<<"List is not Empty\n";
+    }
     
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function function
+//  End of main function 
 //
 ////////////////////////////////////////////////////////////////

@@ -37,29 +37,47 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////
         //
-        // Function Name : DisplayGreater
-        // Input         : Value to compare
-        // Output        :  Displays elements greater than given value
-        // Description   : Use to display all elements in linked list greater than specified value
+        // Function Name : IncrementAll
+        // Input         : None
+        // Output        : None
+        // Description   : Increments the data of all nodes in the linked list by 1
         // Author        : Sakshi Ravindra Darandale
         // Date         :  06/01/2026
         //
         ///////////////////////////////////////////////////////////////
 
-        void DisplayGreater(int x)
+        void IncrementAll()
         { 
             node * temp = first;
            
             while(temp != NULL)
             {
-                if(temp->data > x)
-            {
-                cout<<temp->data<<"\n";
+                temp->data = temp->data + 1;
+                temp = temp->next; 
             }
-            temp = temp->next; 
-            } 
         } 
         
+        /////////////////////////////////////////////////////////////////////////////////
+        //
+        // Function Name :  Display
+        // Input:           None
+        // Output:          Prints all elements of linked list
+        // Description:     Displays the data of all nodes in the linked list
+        // Author:          Sakshi Ravindra Darandale
+        // Date:            06/01/2026
+        //
+        ////////////////////////////////////////////////////////////////////////////////
+        void Display()
+        {
+            node * temp = first;
+            while(temp != NULL)
+            {
+                cout << temp->data << " ";
+                temp = temp->next;
+            }
+            cout << "\n";
+        }
+
         ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
@@ -100,27 +118,26 @@ class SinglyLLL
 int main()
 {
     SinglyLLL obj;
-
-    int iValue = 0;
-    
-    obj.InsertFirst(70);
+ 
+    obj.InsertFirst(50);
     obj.InsertFirst(95);
     obj.InsertFirst(35);
     obj.InsertFirst(20);
     obj.InsertFirst(10);
-
-    cout<<"Enter the number: \n";
-    cin>>iValue;
     
-    cout<<"Elements greater than " <<iValue<< " are : \n";
+    cout<<"Original list is : \n";
+    obj.Display();
     
-    obj.DisplayGreater(iValue);
+    obj.IncrementAll();
+    
+    cout<<"Incremented list is : \n";
+    obj.Display();
     
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function function
+//  End of main function 
 //
 ////////////////////////////////////////////////////////////////
