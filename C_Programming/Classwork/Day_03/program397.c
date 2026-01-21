@@ -79,18 +79,30 @@ void Display(PNODE first)
 
 int Count(PNODE first)
 {
-    return 0;
+    int iCount = 0;
+
+    while(first != NULL)
+    {
+        iCount++;
+        first = first -> next;
+    }
+
+    return iCount;
 }
 
 int main()
 {
     PNODE head = NULL;
+    int iRet = 0;
 
     InsertFirst(&head,51);
     InsertFirst(&head,21);
     InsertFirst(&head,11);
     
     Display(head);
+    
+    iRet = Count(head);
+    printf("Number of nodes are : %d\n",iRet);
     
     return 0;
 }
