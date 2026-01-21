@@ -35,38 +35,34 @@ class SinglyLLL
             iCount=0;
         }
         
-        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  Difference
+        // Function Name :  DisplayDivByThree
         // Input:           None
-        // Output:          Returns difference between largest and smallest element
-        // Description:     Calculates and returns the difference between maximum and 
-        //                   minimum elements in the linked list
+        // Output:          Returns count of elements divisible by 5
+        // Description:     Counts the number of elements in the linked list that are divisible by 5
         // Author:          Sakshi Ravindra Darandale
         // Date:            09/01/2026
         //
-        ////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
 
-        int Difference()
+        int CountDivByFive()
         {
-            node * temp =first;
-            int iMax = temp->data, iMin = temp->data;
-            int iDiff = 0;
+            node * temp = first;
             
+            int iCount = 0;
             while(temp != NULL)
             {
-                if(temp->data > iMax)
-                    iMax = temp->data;
-                if(temp->data < iMin)
-                    iMin = temp->data;
-                
-                iDiff = iMax - iMin;
-                temp = temp->next;
-            }
+               if(temp->data % 5 == 0)
+               {
+                    iCount++;
+               }
+               temp=temp->next;
             
-            return iDiff;
+            }
+            return iCount;
         }
-
+        
         ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
@@ -108,15 +104,16 @@ int main()
     SinglyLLL obj;
      
     int iRet = 0;
-    obj.InsertFirst(60);
-    obj.InsertFirst(50);
-    obj.InsertFirst(40);
-    obj.InsertFirst(30);
-    obj.InsertFirst(20);
-    obj.InsertFirst(10);
 
-    iRet = obj.Difference();
-    cout<<"Difference is : "<<iRet<<"\n";
+    obj.InsertFirst(200);
+    obj.InsertFirst(14);
+    obj.InsertFirst(78);
+    obj.InsertFirst(100);
+
+    iRet=obj.CountDivByFive();
+   
+    cout<<"The number of elements divisible by five are : " <<iRet<<"\n";
+    
     return 0;
     
 }

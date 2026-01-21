@@ -35,38 +35,33 @@ class SinglyLLL
             iCount=0;
         }
         
-        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  Difference
+        // Function Name :  DisplayDivByThree
         // Input:           None
-        // Output:          Returns difference between largest and smallest element
-        // Description:     Calculates and returns the difference between maximum and 
-        //                   minimum elements in the linked list
+        // Output:          Prints elements divisible by 3
+        // Description:     Displays all elements in the linked list that are divisible by 3
         // Author:          Sakshi Ravindra Darandale
         // Date:            09/01/2026
         //
-        ////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////
 
-        int Difference()
+        void  DisplayDivByThree()
         {
-            node * temp =first;
-            int iMax = temp->data, iMin = temp->data;
-            int iDiff = 0;
+            node * temp = first;
             
             while(temp != NULL)
             {
-                if(temp->data > iMax)
-                    iMax = temp->data;
-                if(temp->data < iMin)
-                    iMin = temp->data;
-                
-                iDiff = iMax - iMin;
-                temp = temp->next;
+               if(temp->data % 3 == 0)
+               {
+                    cout<<temp->data<<"\t";
+               }
+               temp=temp->next;
+            
             }
             
-            return iDiff;
         }
-
+        
         ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
@@ -106,22 +101,19 @@ class SinglyLLL
 int main()
 {
     SinglyLLL obj;
-     
-    int iRet = 0;
-    obj.InsertFirst(60);
-    obj.InsertFirst(50);
-    obj.InsertFirst(40);
-    obj.InsertFirst(30);
-    obj.InsertFirst(20);
+         
+    obj.InsertFirst(27);
+    obj.InsertFirst(18);
+    obj.InsertFirst(9);
     obj.InsertFirst(10);
 
-    iRet = obj.Difference();
-    cout<<"Difference is : "<<iRet<<"\n";
+    obj.DisplayDivByThree();
+   
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function 
+//  End of main function
 //
 ////////////////////////////////////////////////////////////////

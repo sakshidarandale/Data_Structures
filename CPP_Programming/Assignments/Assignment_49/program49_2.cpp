@@ -35,36 +35,29 @@ class SinglyLLL
             iCount=0;
         }
         
-        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  Difference
+        // Function Name :  CheckAllPositive
         // Input:           None
-        // Output:          Returns difference between largest and smallest element
-        // Description:     Calculates and returns the difference between maximum and 
-        //                   minimum elements in the linked list
+        // Output:          Returns true if all elements are positive, otherwise false
+        // Description:     Checks whether all elements of the linked list 
+        //                  are positive numbers.
         // Author:          Sakshi Ravindra Darandale
         // Date:            09/01/2026
         //
         ////////////////////////////////////////////////////////////////////////////////
 
-        int Difference()
+        bool CheckAllPositive()
         {
-            node * temp =first;
-            int iMax = temp->data, iMin = temp->data;
-            int iDiff = 0;
-            
-            while(temp != NULL)
+            while(first != NULL)
             {
-                if(temp->data > iMax)
-                    iMax = temp->data;
-                if(temp->data < iMin)
-                    iMin = temp->data;
-                
-                iDiff = iMax - iMin;
-                temp = temp->next;
+            if(first->data < 0)
+            {
+                return false;
             }
-            
-            return iDiff;
+            first = first->next;
+            }
+            return true;
         }
 
         ////////////////////////////////////////////////////////////////
@@ -107,16 +100,25 @@ int main()
 {
     SinglyLLL obj;
      
-    int iRet = 0;
-    obj.InsertFirst(60);
-    obj.InsertFirst(50);
+    bool bRet = 0;
+
+
+    obj.InsertFirst(-50);
     obj.InsertFirst(40);
-    obj.InsertFirst(30);
+    obj.InsertFirst(-30);
     obj.InsertFirst(20);
     obj.InsertFirst(10);
 
-    iRet = obj.Difference();
-    cout<<"Difference is : "<<iRet<<"\n";
+    bRet = obj.CheckAllPositive();
+
+    if(bRet==true)
+    {
+        cout<<" All elements are positive\n";
+    }
+    else
+    {
+        cout<<" All elements are not positive\n";
+    }
     return 0;
     
 }

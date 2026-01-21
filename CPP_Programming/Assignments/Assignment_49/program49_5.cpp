@@ -35,38 +35,45 @@ class SinglyLLL
             iCount=0;
         }
         
-        ////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  Difference
+        // Function Name :  CountTwoDigit
         // Input:           None
-        // Output:          Returns difference between largest and smallest element
-        // Description:     Calculates and returns the difference between maximum and 
-        //                   minimum elements in the linked list
+        // Output:          Returns count of two-digit elements
+        // Description:     Counts the number of elements in the linked list that have exactly two digits
         // Author:          Sakshi Ravindra Darandale
         // Date:            09/01/2026
         //
         ////////////////////////////////////////////////////////////////////////////////
 
-        int Difference()
+        int CountTwoDigit()
         {
-            node * temp =first;
-            int iMax = temp->data, iMin = temp->data;
-            int iDiff = 0;
+            int iCount = 0;
+            int iDigit = 0;
+            int iValue = 0;
             
-            while(temp != NULL)
+            while(first != NULL)
             {
-                if(temp->data > iMax)
-                    iMax = temp->data;
-                if(temp->data < iMin)
-                    iMin = temp->data;
+                iValue = first->data;
+                iDigit = 0;
                 
-                iDiff = iMax - iMin;
-                temp = temp->next;
+                while(iValue != 0)
+                {
+                    iValue = iValue / 10;
+                    iDigit++;
+                }
+                
+                if(iDigit == 2)
+                {
+                    iCount++;
+                }
+                
+                first = first->next;
             }
-            
-            return iDiff;
+            return iCount;
         }
 
+        
         ////////////////////////////////////////////////////////////////
         //
         // Function Name :  InsertFirst
@@ -108,20 +115,21 @@ int main()
     SinglyLLL obj;
      
     int iRet = 0;
-    obj.InsertFirst(60);
-    obj.InsertFirst(50);
-    obj.InsertFirst(40);
-    obj.InsertFirst(30);
-    obj.InsertFirst(20);
+
+    obj.InsertFirst(200);
+    obj.InsertFirst(14);
+    obj.InsertFirst(78);
     obj.InsertFirst(10);
 
-    iRet = obj.Difference();
-    cout<<"Difference is : "<<iRet<<"\n";
+    iRet=obj.CountTwoDigit();
+   
+    cout<<"The number of two digit elements are : " <<iRet<<"\n";
+    
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function 
+//  End of main function
 //
 ////////////////////////////////////////////////////////////////
