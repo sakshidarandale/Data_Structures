@@ -35,29 +35,30 @@ class SinglyLLL
             iCount=0;
         }
         
-        ///////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  ReplaceEven
+        // Function Name :  DisplayEvenPosition
         // Input:           None
-        // Output:          prints modified list
-        // Description:     Replaces all even elements in the linked list with 0
+        // Output:          Prints elements at even positions
+        // Description:     Displays all elements of the linked list present at even positions
         // Author:          Sakshi Ravindra Darandale
         // Date:            09/01/2026
         //
-        ////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////
 
-        void  ReplaceEven()
+        void  DisplayEvenPosition()
         {
             node * temp = first;
-            
+             
+            int iPos=1;
             while(temp != NULL)
             {
-               if(temp->data % 2 == 0)
+               if(iPos %2 == 0)
                {
-                    temp->data = 0;
+                    cout<<temp->data<<"\n";
                }
 
-               cout<<temp->data<<"\t";
+               iPos++;
 
                temp=temp->next;
             
@@ -104,14 +105,15 @@ class SinglyLLL
 int main()
 {
     SinglyLLL obj;
-         
+     
+    obj.InsertFirst(60);
     obj.InsertFirst(50);
     obj.InsertFirst(40);
-    obj.InsertFirst(47);
-    obj.InsertFirst(35);
+    obj.InsertFirst(30);
+    obj.InsertFirst(20);
     obj.InsertFirst(10);
 
-    obj.ReplaceEven();
+    obj.DisplayEvenPosition();
    
     return 0;
     

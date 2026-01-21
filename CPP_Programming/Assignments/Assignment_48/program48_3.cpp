@@ -35,29 +35,23 @@ class SinglyLLL
             iCount=0;
         }
         
-        ///////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  ReplaceEven
+        // Function Name :  MultiplyByTwo
         // Input:           None
-        // Output:          prints modified list
-        // Description:     Replaces all even elements in the linked list with 0
+        // Output:          Prints modified list
+        // Description:     Prints each element of the linked list multiplied by 2
         // Author:          Sakshi Ravindra Darandale
         // Date:            09/01/2026
         //
-        ////////////////////////////////////////////////////////////////////////////
-
-        void  ReplaceEven()
+        //////////////////////////////////////////////////////////////////////////////
+        void  MultiplyByTwo()
         {
             node * temp = first;
             
             while(temp != NULL)
             {
-               if(temp->data % 2 == 0)
-               {
-                    temp->data = 0;
-               }
-
-               cout<<temp->data<<"\t";
+               cout<<temp->data * 2<<"\t";
 
                temp=temp->next;
             
@@ -107,17 +101,17 @@ int main()
          
     obj.InsertFirst(50);
     obj.InsertFirst(40);
-    obj.InsertFirst(47);
-    obj.InsertFirst(35);
+    obj.InsertFirst(30);
+    obj.InsertFirst(20);
     obj.InsertFirst(10);
 
-    obj.ReplaceEven();
+    obj.MultiplyByTwo();
    
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function 
+//  End of main function
 //
 ////////////////////////////////////////////////////////////////

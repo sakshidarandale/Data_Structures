@@ -37,7 +37,7 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////////////////
         //
-        // Function Name :  ReplaceEven
+        // Function Name :  ReplaceOdd
         // Input:           None
         // Output:          prints modified list
         // Description:     Replaces all even elements in the linked list with 0
@@ -46,15 +46,15 @@ class SinglyLLL
         //
         ////////////////////////////////////////////////////////////////////////////
 
-        void  ReplaceEven()
+        void  ReplaceOdd()
         {
             node * temp = first;
             
             while(temp != NULL)
             {
-               if(temp->data % 2 == 0)
+               if(temp->data % 2 != 0)
                {
-                    temp->data = 0;
+                    temp->data = 1;
                }
 
                cout<<temp->data<<"\t";
@@ -111,13 +111,13 @@ int main()
     obj.InsertFirst(35);
     obj.InsertFirst(10);
 
-    obj.ReplaceEven();
+    obj.ReplaceOdd();
    
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function 
+//  End of main function
 //
 ////////////////////////////////////////////////////////////////
