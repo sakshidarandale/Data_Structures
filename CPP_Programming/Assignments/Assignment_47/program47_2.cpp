@@ -37,41 +37,46 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////
         //
-        // Function Name : DisplayReverse
-        // Input         : None 
-        // Output        : None
-        // Description   : Displays all elements of the linked list in reverse order
+        // Function Name : CountDigits
+        // Input         : None
+        // Output        : Prints number of digits for each node
+        // Description   : Counts and displays the number of digits in each element of the linked list
         // Author        : Sakshi Ravindra Darandale
         // Date         :  08/01/2026
         //
         ///////////////////////////////////////////////////////////////
 
-        void DisplayReverse(node * temp)
-        {  
-            if(temp == NULL)
-            {
-                return; 
-            }
-            
-            DisplayReverse(temp->next);
-            cout<<"| -> "<<temp->data<<" ";
-        } 
-        
-        /////////////////////////////////////////////////////////////////////////////////
-        //
-        // Function Name :  Display
-        // Input:           None
-        // Output:          Prints all elements of linked list
-        // Description:     Displays the data of all nodes in the linked list
-        // Author:          Sakshi Ravindra Darandale
-        // Date:            08/01/2026
-        //
-        ////////////////////////////////////////////////////////////////////////////////
-        void Display()
+        void CountDigits()
         {
-           DisplayReverse(first);
-           
-           cout<<"\n";
+            node * temp = first;
+            
+            int iDigitCount = 0;
+            int iValue = 0;
+            
+            while(temp != NULL)
+            {
+                iValue = temp->data;
+                iDigitCount = 0;
+                
+                if(iValue == 0)
+                {
+                    iDigitCount = 1;
+                }
+                else
+                {
+                    while(iValue != 0)
+                    {
+                        iDigitCount++;
+                        iValue = iValue / 10;
+                    }
+                }
+                
+                cout << "Number : " << temp->data<<"\n";
+                cout << " Digit count : " << iDigitCount << "\n";
+                   
+                
+                temp = temp->next;
+            }
         }
         
         ////////////////////////////////////////////////////////////////
@@ -81,7 +86,7 @@ class SinglyLLL
         // Output:          Nothing
         // Description:     Use to insert node at first position
         // Author:          Sakshi Ravindra Darandale
-        // Date:            06/01/2026
+        // Date:            08/01/2026
         //
         ////////////////////////////////////////////////////////////////
         
@@ -114,16 +119,13 @@ class SinglyLLL
 int main()
 {
     SinglyLLL obj;
- 
-    obj.InsertFirst(50);
-    obj.InsertFirst(95);
-    obj.InsertFirst(35);
-    obj.InsertFirst(20);
+        
+    obj.InsertFirst(430);
+    obj.InsertFirst(5500);
+    obj.InsertFirst(250);
     obj.InsertFirst(10);
-      
-    cout<<"Reversed list is : \n";
-    obj.Display();
-    cout<<"NULL\n";
+
+    obj.CountDigits();
     
     return 0;
     

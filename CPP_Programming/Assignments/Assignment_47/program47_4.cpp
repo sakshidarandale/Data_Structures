@@ -37,41 +37,42 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////
         //
-        // Function Name : DisplayReverse
-        // Input         : None 
-        // Output        : None
-        // Description   : Displays all elements of the linked list in reverse order
+        // Function Name : DisplayPrime
+        // Input         : None
+        // Output        : Prints all prime numbers in the linked list
+        // Description   : Traverses the linked list and displays nodes which contain prime numbers
         // Author        : Sakshi Ravindra Darandale
         // Date         :  08/01/2026
         //
         ///////////////////////////////////////////////////////////////
 
-        void DisplayReverse(node * temp)
-        {  
-            if(temp == NULL)
-            {
-                return; 
-            }
-            
-            DisplayReverse(temp->next);
-            cout<<"| -> "<<temp->data<<" ";
-        } 
-        
-        /////////////////////////////////////////////////////////////////////////////////
-        //
-        // Function Name :  Display
-        // Input:           None
-        // Output:          Prints all elements of linked list
-        // Description:     Displays the data of all nodes in the linked list
-        // Author:          Sakshi Ravindra Darandale
-        // Date:            08/01/2026
-        //
-        ////////////////////////////////////////////////////////////////////////////////
-        void Display()
+        void DisplayPrime()
         {
-           DisplayReverse(first);
-           
-           cout<<"\n";
+            node * temp = first;
+            
+            int iFrequency = 0;
+            int iCnt = 0;
+            
+            while(temp != NULL)
+            {
+                iFrequency = 0;
+               
+                for(iCnt=2;iCnt<=temp->data/2;iCnt++)
+                {
+                    if(temp->data%iCnt == 0)
+                    {
+                        iFrequency++;
+                        break;
+                    }
+                }
+                if(iFrequency == 0 && temp->data > 1)
+                {
+                    cout<<temp->data<<"\n";
+                }
+                
+                temp = temp->next;
+            
+            }
         }
         
         ////////////////////////////////////////////////////////////////
@@ -81,7 +82,7 @@ class SinglyLLL
         // Output:          Nothing
         // Description:     Use to insert node at first position
         // Author:          Sakshi Ravindra Darandale
-        // Date:            06/01/2026
+        // Date:            08/01/2026
         //
         ////////////////////////////////////////////////////////////////
         
@@ -114,16 +115,15 @@ class SinglyLLL
 int main()
 {
     SinglyLLL obj;
- 
-    obj.InsertFirst(50);
-    obj.InsertFirst(95);
-    obj.InsertFirst(35);
-    obj.InsertFirst(20);
+        
+    obj.InsertFirst(13);
+    obj.InsertFirst(11);
+    obj.InsertFirst(31);
     obj.InsertFirst(10);
-      
-    cout<<"Reversed list is : \n";
-    obj.Display();
-    cout<<"NULL\n";
+
+    cout<<"Prime numbers in the linked list are : \n";
+    
+    obj.DisplayPrime();
     
     return 0;
     

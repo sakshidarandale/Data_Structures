@@ -37,41 +37,41 @@ class SinglyLLL
         
         ///////////////////////////////////////////////////////////////
         //
-        // Function Name : DisplayReverse
-        // Input         : None 
-        // Output        : None
-        // Description   : Displays all elements of the linked list in reverse order
+        // Function Name : SumDigits
+        // Input         : None
+        // Output        : Prints sum of digits for each node
+        // Description   : Calculates and displays the sum of digits of each element of the linked list
         // Author        : Sakshi Ravindra Darandale
         // Date         :  08/01/2026
         //
         ///////////////////////////////////////////////////////////////
 
-        void DisplayReverse(node * temp)
-        {  
-            if(temp == NULL)
-            {
-                return; 
-            }
-            
-            DisplayReverse(temp->next);
-            cout<<"| -> "<<temp->data<<" ";
-        } 
-        
-        /////////////////////////////////////////////////////////////////////////////////
-        //
-        // Function Name :  Display
-        // Input:           None
-        // Output:          Prints all elements of linked list
-        // Description:     Displays the data of all nodes in the linked list
-        // Author:          Sakshi Ravindra Darandale
-        // Date:            08/01/2026
-        //
-        ////////////////////////////////////////////////////////////////////////////////
-        void Display()
+        void SumDigits()
         {
-           DisplayReverse(first);
-           
-           cout<<"\n";
+            node * temp = first;
+            
+            int iSum = 0;
+            int iDigit = 0;
+            int iValue = 0;
+            
+            while(temp != NULL)
+            {
+                iValue = temp->data;
+                iSum = 0;
+               
+                while(iValue != 0)
+                {
+                    iDigit = iValue % 10;
+                    iValue = iValue / 10;
+                    iSum = iSum + iDigit;
+                }
+                
+                cout<<"Number : " <<temp->data<<"\n";
+                cout<<"Sum of Digits is : "<<iSum <<"\n";
+                
+                temp=temp->next;
+                
+            }
         }
         
         ////////////////////////////////////////////////////////////////
@@ -81,7 +81,7 @@ class SinglyLLL
         // Output:          Nothing
         // Description:     Use to insert node at first position
         // Author:          Sakshi Ravindra Darandale
-        // Date:            06/01/2026
+        // Date:            08/01/2026
         //
         ////////////////////////////////////////////////////////////////
         
@@ -114,22 +114,19 @@ class SinglyLLL
 int main()
 {
     SinglyLLL obj;
- 
-    obj.InsertFirst(50);
-    obj.InsertFirst(95);
+        
+    obj.InsertFirst(55);
+    obj.InsertFirst(45);
     obj.InsertFirst(35);
-    obj.InsertFirst(20);
-    obj.InsertFirst(10);
-      
-    cout<<"Reversed list is : \n";
-    obj.Display();
-    cout<<"NULL\n";
+    obj.InsertFirst(55);
+
+    obj.SumDigits();
     
     return 0;
     
 }
 ////////////////////////////////////////////////////////////////
 //
-//  End of main function
+//  End of main function 
 //
 ////////////////////////////////////////////////////////////////
