@@ -1,4 +1,4 @@
-// Singly Circular Linked List
+// Doubly Linear Linked List
 
 #include<iostream>
 using namespace std;
@@ -7,24 +7,23 @@ struct node
 {
     int data;
     struct node *next;
+    struct node *prev;
 };
 
 typedef struct node NODE;
 typedef struct node* PNODE;
 
-class SinglyCL
+class DoublyLL
 {
-    public:
+    private:
         PNODE first;
-        PNODE last;
         int iCount;
 
     public:
-        SinglyCL()
+        DoublyLL()
         {
-            cout<<"Object of SinglyCL gets created.\n";
+            cout<<"Object of DoublyLL gets created.\n";
             this->first = NULL;
-            this->last = NULL;
             this->iCount = 0;
         }
 
@@ -36,54 +35,138 @@ class SinglyCL
             
             newn->data=no;
             newn->next=NULL;
+            newn->prev=NULL;  
             
-            if((this->first==NULL) && (this->last==NULL))
+            if(this->first==NULL)
             {
-                this->first=newn;
-                this->last=newn;
+               this->first=newn;
             }
             else
             {
                 newn->next=this->first;
+                this->first->prev=newn;
                 this->first=newn;
             }
-            
-            last->next=this->first;
-            
             this->iCount++;
         }
 
         void InsertLast(int no)
         {
-            PNODE newn = NULL;
+            PNODE newn=NULL;
+            PNODE temp=NULL;
             
             newn = new NODE;
             
             newn->data=no;
             newn->next=NULL;
+            newn->prev=NULL;  
             
-            if((this->first==NULL) && (this->last==NULL))
+            if(this->first==NULL)    //LL is empty
             {
                 this->first=newn;
-                this->last=newn;
             }
-            else
+            else              //LL contains at least 1 Node
             {
-                this->last->next=newn;
-                this->last=newn;
+               temp=this->first;
+               
+               while(temp->next!=NULL)
+               {
+                temp=temp->next;
+               }
+               
+               temp->next=newn;
+               newn->prev=temp;
             }
-            
-            last->next=this->first;
-            
             this->iCount++;
         }
 
+        void DeleteFirst()
+        {
+            PNODE temp=NULL;
+            
+            if(this->first==NULL)
+            {
+                return;
+            }
+            
+            else if(this->first->next==NULL)
+            {
+                delete this->first;
+                this->first=NULL;
+            }
+            
+            else
+            {
+                temp=this->first;
+                
+                this->first=this->first->next;
+                delete temp;
+                
+                this->first->prev=NULL;
+            }
+            this->iCount--;
+            
+        }
+
+        void DeleteLast()
+        {
+            PNODE temp=NULL;
+            
+            if(this->first==NULL)
+            {
+                return;
+            }
+            
+            else if(this->first->next==NULL)
+            {
+                delete this->first;
+                this->first=NULL;
+            }
+            
+            else
+            {
+                temp=this->first;
+                
+                while(temp->next->next!=NULL)
+                {
+                    temp=temp->next;
+                }
+                delete (temp->next);
+                
+                temp->next=NULL;
+            }
+            this->iCount--;
+            
+        }
+
+        void Display()
+        {
+            PNODE temp=NULL;
+            int iCnt = 0;
+            temp = this->first;
+            
+            cout<<"\nNULL <=>";
+        
+            for(iCnt = 1; iCnt <= this->iCount; iCnt++)  
+            {
+                cout<<"| "<<temp->data<<" |<=> ";
+                temp = temp->next;
+            }
+
+            cout<<"NULL\n";
+        }
+
+        int Count()
+        {
+            return this->iCount;
+        }
+        
         void InsertAtPos(int no, int pos)
         {
             PNODE newn=NULL;
             PNODE temp=NULL;
             
-             int iCnt = 0;
+            int iCnt = 0;
             
             if((pos<1)||(pos>this->iCount+1))
             {
@@ -101,89 +184,25 @@ class SinglyCL
             }
             else
             {
-                newn = new NODE;
+                newn= new NODE;
                 
-                newn->data = no;
-                newn->next = NULL;
+                newn->data=no;
+                newn->next=NULL;
                 
-                temp = this->first;
+                temp=this->first;
                 
                 for(iCnt=1;iCnt<pos-1;iCnt++)
                 {
                     temp=temp->next;
                 }
-                
                 newn->next=temp->next;
+                temp->next->prev=newn;
                 temp->next=newn;
-                
+                 
                 this->iCount++;
-            }
+            }    
         }
-
-        void DeleteFirst()
-        {
-            PNODE temp = NULL;
-            
-            if((this->first==NULL)&&(this->last==NULL))
-            {
-                return;
-            }
-            
-            else if(this->first==this->last)
-            {
-                delete(this->first);
-                this->first=NULL;
-                this->last=NULL;
-            }
-            
-            else
-            {
-                temp=this->first;
-                
-                this->first=this->first->next;
-                
-                delete(temp);
-                
-                this->last->next=this->first;
-            }
-            this->iCount--;
-        }
-
-        void DeleteLast()
-        {
-            PNODE temp = NULL;
         
-            if((this->first==NULL)&&(this->last==NULL))
-            {
-                return;
-            }
-            
-            else if(this->first==this->last)
-            {
-                delete(this->first);
-                this->first=NULL;
-                this->last=NULL;
-            }
-            
-            else
-            {
-                temp=this->first;
-                
-                while(temp->next!=this->last)
-                {
-                    temp=temp->next;
-                }
-                
-                delete(this->last);
-                this->last=temp;
-                
-                this->last->next=this->first;
-            }
-            this->iCount--;
-            
-               
-        }
-
         void DeleteAtPos(int pos)
         {
             PNODE temp=NULL;
@@ -191,7 +210,7 @@ class SinglyCL
             
             int iCnt = 0;
             
-            if((pos < 1) || (pos >this-> iCount))
+            if((pos<1)||(pos>this->iCount))
             {
                 cout<<"Invalid Position\n";
                 return;
@@ -201,13 +220,13 @@ class SinglyCL
             {
                 DeleteFirst();
             }
-            else if(pos==iCount)
+            else if(pos==this->iCount)
             {
                 DeleteLast();
             }
             else
             {
-                temp = this->first;
+                temp=this->first;
                 
                 for(iCnt=1;iCnt<pos-1;iCnt++)
                 {
@@ -218,35 +237,19 @@ class SinglyCL
                 
                 temp->next=target->next;
                 
-                delete(target); 
+                temp->next->prev=temp;
                 
+                delete(target);
+            
                 this->iCount--;
             }
-        }
-
-        void Display()
-        {
-            PNODE temp = this->first;
             
-            do
-            {
-                cout<<"| "<<temp->data<<" |-> ";
-                temp=temp->next;
-            } while (temp != this->first);
-            
-            cout<<"\n";
-           
-        }
-
-        int Count()
-        {
-            return iCount;
         }
 };
 
 int main()
 {
-    SinglyCL obj;
+    DoublyLL obj;
     int iRet = 0;
 
     obj.InsertFirst(51);
