@@ -9,7 +9,14 @@ int main()
    
    fd = creat("LB.txt",0777);
    
-   printf("FD is : %d\n",fd);
-    
+   if(fd == -1) 
+   {
+    printf("Unable to create file\n");
+   }
+   else
+   {
+    printf("File gets successfully created\n");
+   }
+   
     return 0;
 }
