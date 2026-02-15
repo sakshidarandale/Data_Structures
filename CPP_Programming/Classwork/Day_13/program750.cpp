@@ -42,11 +42,28 @@ class ArrayX
             }
             cout<<"\n";
         }
+
+        bool LinearSearch(int iNo)
+        {
+            bool bFlag = false;
+            int i = 0;
+
+            for(i = 0; i < iSize; i++)
+            {
+                if(Arr[i] == iNo)
+                {
+                    bFlag = true;
+                    break;
+                }
+            }
+            return bFlag;
+        }
 };
 
 int main()
 {
     int iValue=0;
+    
     
     cout<<"Enter the number of elements : \n";
     cin>>iValue;
@@ -56,6 +73,15 @@ int main()
     aobj.Accept();
 
     aobj.Display();
+
+    if(aobj.LinearSearch(21))
+    {
+        cout<<"Element is present\n";
+    }
+    else
+    {
+        cout<<"There is no such element\n";
+    }
     
     return 0;
 }
