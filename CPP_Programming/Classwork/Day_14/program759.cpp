@@ -6,15 +6,16 @@ class ArrayX
     public:
         int *Arr; 
         int iSize=0;
+        bool Sorted;  
 
         
     ArrayX(int no);
     ~ArrayX();
     void Accept();
     void Display();
-    bool LinearSearch(int iNo);
-    bool BidirectionalSearch(int iNo);
-        
+    bool CheckSorted();
+   
+     
 };
 
 ArrayX :: ArrayX(int no)
@@ -22,6 +23,7 @@ ArrayX :: ArrayX(int no)
     cout<<"Inside Constructor\n";
     iSize=no;
     Arr=new int[iSize];
+    Sorted = true;
 }    
 ArrayX :: ~ArrayX()
 {
@@ -35,10 +37,19 @@ void ArrayX :: Accept()
     
     cout<<"Enter the elements : \n";
     
-    for(iCnt=0;iCnt<iSize;iCnt++)
+    cin>>Arr[iCnt];
+
+    for(iCnt=1;iCnt<iSize;iCnt++)
     {
         cin>>Arr[iCnt];
+        
+        if(Arr[iCnt - 1] > Arr[iCnt])
+        {
+            Sorted = false;
+        }
     }
+
+    Sorted = CheckSorted();
 }
 
 void ArrayX :: Display()
@@ -53,38 +64,25 @@ void ArrayX :: Display()
     cout<<"\n";
 }
 
-bool ArrayX ::LinearSearch(int iNo)
+
+bool ArrayX :: CheckSorted()
 {
-    bool bFlag = false;
     int i = 0;
+    bool bFlag = true;
 
-    for(i = 0; i < iSize; i++)
+    for(i = 0; i <iSize - 1; i++)
     {
-        if(Arr[i] == iNo)
+        if(Arr[i] > Arr[i+1])
         {
-            bFlag = true;
+            bFlag = false;
             break;
         }
     }
     return bFlag;
+
 }
 
-bool ArrayX :: BidirectionalSearch(int iNo)
-{
-    bool bFlag = false;
-    int iStart = 0;
-    int iEnd = 0;
 
-    for(iStart = 0, iEnd = iSize - 1; iStart <= iEnd; iStart++,iEnd--)
-    {
-        if((Arr[iStart] == iNo) || (Arr[iEnd] == iNo))
-        {
-            bFlag = true;
-            break;
-        }
-    }
-    return bFlag;
-}
 int main()
 {
     int iValue=0;
@@ -99,23 +97,5 @@ int main()
 
     aobj.Display();
 
-    if(aobj.LinearSearch(21))
-    {
-        cout<<"Element is present\n";
-    }
-    else
-    {
-        cout<<"There is no such element\n";
-    }
-
-    if(aobj.BidirectionalSearch(21))
-    {
-        cout<<"Element is present\n";
-    }
-    else
-    {
-        cout<<"There is no such element\n";
-    }
-    
     return 0;
 }

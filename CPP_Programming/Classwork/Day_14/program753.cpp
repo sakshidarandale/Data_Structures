@@ -14,6 +14,8 @@ class ArrayX
     void Display();
     bool LinearSearch(int iNo);
     bool BidirectionalSearch(int iNo);
+
+    bool CheckSorted();
         
 };
 
@@ -85,6 +87,27 @@ bool ArrayX :: BidirectionalSearch(int iNo)
     }
     return bFlag;
 }
+
+
+//12    14      17      24      28      36      48      52      52      65
+bool ArrayX :: CheckSorted()
+{
+    int i = 0;
+    bool bFlag = true;
+
+    for(i = 0; i <iSize - 1; i++)
+    {
+        if(Arr[i] > Arr[i+1])
+        {
+            bFlag = false;
+            break;
+        }
+    }
+    return bFlag;
+
+}
+
+
 int main()
 {
     int iValue=0;
@@ -98,8 +121,9 @@ int main()
     aobj.Accept();
 
     aobj.Display();
+/*
 
-    if(aobj.LinearSearch(21))
+if(aobj.LinearSearch(21))
     {
         cout<<"Element is present\n";
     }
@@ -115,6 +139,16 @@ int main()
     else
     {
         cout<<"There is no such element\n";
+    }
+*/
+
+    if(aobj.CheckSorted() == true)
+    {
+        cout<<"Data is sorted\n";
+    }
+    else
+    {
+        cout<<"Data is not sorted\n";
     }
     
     return 0;

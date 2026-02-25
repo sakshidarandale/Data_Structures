@@ -6,15 +6,20 @@ class ArrayX
     public:
         int *Arr; 
         int iSize=0;
+        bool Sorted;  //IMP
 
         
     ArrayX(int no);
     ~ArrayX();
+
     void Accept();
     void Display();
-    bool LinearSearch(int iNo);
-    bool BidirectionalSearch(int iNo);
-        
+
+    bool CheckSorted();
+
+    void BubbleSort();
+   
+     
 };
 
 ArrayX :: ArrayX(int no)
@@ -22,6 +27,7 @@ ArrayX :: ArrayX(int no)
     cout<<"Inside Constructor\n";
     iSize=no;
     Arr=new int[iSize];
+    Sorted = true;
 }    
 ArrayX :: ~ArrayX()
 {
@@ -35,10 +41,19 @@ void ArrayX :: Accept()
     
     cout<<"Enter the elements : \n";
     
-    for(iCnt=0;iCnt<iSize;iCnt++)
+    cin>>Arr[iCnt];
+
+    for(iCnt=1;iCnt<iSize;iCnt++)
     {
         cin>>Arr[iCnt];
+        
+        if(Arr[iCnt - 1] > Arr[iCnt])
+        {
+            Sorted = false;
+        }
     }
+
+    Sorted = CheckSorted();
 }
 
 void ArrayX :: Display()
@@ -53,38 +68,52 @@ void ArrayX :: Display()
     cout<<"\n";
 }
 
-bool ArrayX ::LinearSearch(int iNo)
+
+bool ArrayX :: CheckSorted()
 {
-    bool bFlag = false;
     int i = 0;
+    bool bFlag = true;
 
-    for(i = 0; i < iSize; i++)
+    for(i = 0; i <iSize - 1; i++)
     {
-        if(Arr[i] == iNo)
+        if(Arr[i] > Arr[i+1])
         {
-            bFlag = true;
+            bFlag = false;
             break;
         }
     }
     return bFlag;
+
 }
 
-bool ArrayX :: BidirectionalSearch(int iNo)
+void ArrayX :: BubbleSort()
 {
-    bool bFlag = false;
-    int iStart = 0;
-    int iEnd = 0;
+    int i = 0, j = 0;
+    int temp = 0;
 
-    for(iStart = 0, iEnd = iSize - 1; iStart <= iEnd; iStart++,iEnd--)
+    if(Sorted == true)  //Important Filter
     {
-        if((Arr[iStart] == iNo) || (Arr[iEnd] == iNo))
+        return;
+    }
+
+    for(i = 0; i < iSize - 1; i++)   //Outer Loop
+    {
+
+
+        for(j = 0; j < iSize - 1 - i; j++)  //Inner Loop
         {
-            bFlag = true;
-            break;
+            if(Arr[j] > Arr[j+1])
+            {
+                temp = Arr[j];
+                Arr[j] = Arr[j+1];
+                Arr[j+1] = temp;
+            }
         }
     }
-    return bFlag;
+
+    Sorted = true;
 }
+
 int main()
 {
     int iValue=0;
@@ -97,25 +126,13 @@ int main()
     
     aobj.Accept();
 
+    cout<<"Data before Sorting\n";
     aobj.Display();
 
-    if(aobj.LinearSearch(21))
-    {
-        cout<<"Element is present\n";
-    }
-    else
-    {
-        cout<<"There is no such element\n";
-    }
+    aobj.BubbleSort();
 
-    if(aobj.BidirectionalSearch(21))
-    {
-        cout<<"Element is present\n";
-    }
-    else
-    {
-        cout<<"There is no such element\n";
-    }
-    
+    cout<<"Data after Sorting\n";
+    aobj.Display();
+
     return 0;
 }
